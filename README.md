@@ -7,7 +7,7 @@ As a developer I want to have enough knowledge of React Native to complete a bas
 
 In order to improve the knowledge in React Native exist a Course in Udemy that explains the basis of React Native. The final purpose of this course is to help us to understand how React Native works and help us to complete a Simple first application on react native. With this we MUST use use React Navigation, Redux (to store the data on the cellphone), Flexbox for the design, Code sniffer with AirBnB (conventions). Recomendations: Use Nuclide (https://nuclide.io/)
 
-Acceptance Criteria:
+**Acceptance Criteria:**
 
 You should present a Basic application that accepts the following criteria:
 
