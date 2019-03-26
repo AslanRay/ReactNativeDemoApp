@@ -47,6 +47,9 @@ export const goHome = () => Navigation.setRoot({
             component: {
               name: 'PantallaPrincipal',
               options: {
+                layout:{
+                  orientation: ['portrait']
+                },
                 topBar: {
                   title: {
                     text: 'Dashboard',
@@ -80,6 +83,9 @@ export const goHome = () => Navigation.setRoot({
             component: {
               name: 'PantallaFormulario',
               options: {
+                layout:{
+                  orientation: ['portrait']
+                },
                 topBar: {
                   title: {
                     text: 'Formulario',
@@ -108,9 +114,6 @@ export const goHome = () => Navigation.setRoot({
         }
       },
       {
-    layout: {
-      orientation: ['portrait', 'landscape']
-    },
         stack: {
           children: [{
             component: {
@@ -144,5 +147,5 @@ export const goHome = () => Navigation.setRoot({
         }
       }]
     }
-  }
+  },
 })
