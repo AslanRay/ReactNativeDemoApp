@@ -20,6 +20,7 @@ export default class SignIn extends React.Component {
   onChangeText = (key, value) => {
     this.setState({ [key]: value })
   }
+
   signIn = () => {
     const { username, password } = this.state
     // try {
@@ -31,10 +32,13 @@ export default class SignIn extends React.Component {
     //   console.log('error:', err)
     // }
     firebase.auth().signInWithEmailAndPassword(username,password)
-    .then( ()=>{ goHome() } )
+    .then( ()=>{ goHome();} )
     .catch( function(error) {
-      console.log('error:', error)
+      console.log('error:', error);
+      alert('usuario no existe');
+      
     });
+   
   }
   render() {
     return (

@@ -28,7 +28,7 @@ export default class Initialising extends React.Component {
     );
   }
 
-  async componentDidMount() {
+  componentDidMount() {
 
     // try {
     //   const user = await AsyncStorage.getItem(USER_KEY)

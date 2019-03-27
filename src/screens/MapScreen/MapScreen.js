@@ -11,6 +11,7 @@ import {
 import {goToAuth} from '../../navigation';
 import {USER_KEY} from '../../config';
 import {Navigation} from 'react-native-navigation';
+import firebase from 'firebase';
 
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
 
@@ -47,9 +48,19 @@ class MapScreen extends React.Component {
     this.navigationEventListener = Navigation.events().bindComponent(this);
   }
 
-  logout = async () => {
+  // logout = async () => {
+  //   try {
+  //       await AsyncStorage.removeItem(USER_KEY)
+  //       goToAuth()
+  //   } catch (err) {
+  //       Alert.alert(err)
+  //   }
+// }
+
+  logout = () => {
     try {
-        await AsyncStorage.removeItem(USER_KEY)
+        //await AsyncStorage.removeItem(USER_KEY)
+        firebase.auth().signOut()
         goToAuth()
     } catch (err) {
         Alert.alert(err)
@@ -59,16 +70,16 @@ class MapScreen extends React.Component {
 eliminarCuenta = () => {
   try {
     firebase.auth().currentUser.delete();
-    goToAuth()
-} catch (err) {
-    Alert.alert(err)
-}  
+    //goToAuth();
+  } catch (err) {
+      Alert.alert(err)
+  }  
 }
 
   navigationButtonPressed({ buttonId }) {
     switch (buttonId) {
       case 'nav_logout_btn': {
-        //this.logout()
+        // this.eliminarCuenta();
         Alert.alert(
           'Eliminar cuenta',
           'La cuenta se eliminara definitivamente',

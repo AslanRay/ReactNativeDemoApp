@@ -5,6 +5,7 @@ import PantallaForm from '../../components/RegisterForm/RegisterForm';
 import {goToAuth} from '../../navigation';
 import {USER_KEY} from '../../config';
 import {Navigation} from 'react-native-navigation';
+import firebase from 'firebase';
 
 
 class FormScreen extends Component {
@@ -22,19 +23,30 @@ class FormScreen extends Component {
     this.navigationEventListener = Navigation.events().bindComponent(this);
   }
 
-  logout = async () => {
-    try {
-        await AsyncStorage.removeItem(USER_KEY)
-        goToAuth()
-    } catch (err) {
-        Alert.alert(err)
-    }
+//   logout = async () => {
+//     try {
+//         await AsyncStorage.removeItem(USER_KEY)
+//         goToAuth()
+//     } catch (err) {
+//         Alert.alert(err)
+//     }
+// }
+
+logout = () => {
+  try {
+      //await AsyncStorage.removeItem(USER_KEY)
+      firebase.auth().signOut()
+      goToAuth()
+  } catch (err) {
+      //Alert.alert(err)
+      console.log(err)
+  }
 }
 
 eliminarCuenta = () => {
   try {
     firebase.auth().currentUser.delete();
-    goToAuth()
+    goToAuth();
 } catch (err) {
     Alert.alert(err)
 }  
