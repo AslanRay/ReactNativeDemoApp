@@ -3,10 +3,14 @@ import {View, Text, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-
 
 
 const registerForm = () => {
+
     return(
         <View style={styles.regForm}>
             <Text style={styles.header}>Formulario basico</Text>
-            <TextInput style={styles.textInput} placeholder="Nombre"/>
+            <TextInput 
+            style={styles.textInput} 
+            placeholder="Nombre"
+            />
             <TextInput style={styles.textInput} placeholder="Apellido"/>
         </View>
     );

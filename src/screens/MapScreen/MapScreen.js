@@ -56,10 +56,35 @@ class MapScreen extends React.Component {
     }
 }
 
+eliminarCuenta = () => {
+  try {
+    firebase.auth().currentUser.delete();
+    goToAuth()
+} catch (err) {
+    Alert.alert(err)
+}  
+}
+
   navigationButtonPressed({ buttonId }) {
     switch (buttonId) {
       case 'nav_logout_btn': {
-        this.logout()
+        //this.logout()
+        Alert.alert(
+          'Eliminar cuenta',
+          'La cuenta se eliminara definitivamente',
+          [
+            {
+            text:'Aceptar',
+            onPress: this.eliminarCuenta
+            },
+            {
+              text: 'Cancelar',
+              onPress: () => {console.log('Cancelado')},
+              style: 'cancel'
+            }
+        ],
+        {cancelable:false},
+        );
         break;
       }
       default:

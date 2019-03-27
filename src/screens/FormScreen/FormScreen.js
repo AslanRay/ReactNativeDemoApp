@@ -13,7 +13,7 @@ class FormScreen extends Component {
         super(props);
         this.state = {
             date_in: '2019-03-15',
-            date_out: '2100-12-31'
+            date_out: '2100-12-31',
         };
     }
 
@@ -31,10 +31,35 @@ class FormScreen extends Component {
     }
 }
 
+eliminarCuenta = () => {
+  try {
+    firebase.auth().currentUser.delete();
+    goToAuth()
+} catch (err) {
+    Alert.alert(err)
+}  
+}
+
   navigationButtonPressed({ buttonId }) {
     switch (buttonId) {
       case 'nav_logout_btn': {
-        this.logout()
+        //this.logout()
+        Alert.alert(
+          'Eliminar cuenta',
+          'La cuenta se eliminara definitivamente',
+          [
+            {
+            text:'Aceptar',
+            onPress: this.eliminarCuenta
+            },
+            {
+              text: 'Cancelar',
+              onPress: () => {console.log('Cancelado')},
+              style: 'cancel'
+            }
+        ],
+        {cancelable:false},
+        );
         break;
       }
       default:
@@ -43,7 +68,7 @@ class FormScreen extends Component {
   }
 
     enviado = () => {
-        alert('Datos enviados');
+        alert('Datos enviados ');
     }
 
     render() {

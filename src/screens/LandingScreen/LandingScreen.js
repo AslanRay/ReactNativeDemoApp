@@ -6,16 +6,13 @@ import {USER_KEY} from '../../config';
 import PantallaLanding from '../../components/LandingScreen/LandingScreen';
 import firebase from 'firebase';
 
-
-
-
 class LandingScreen extends Component {
 
   componentDidMount() {
     this.navigationEventListener = Navigation.events().bindComponent(this);
   }
 
-  logout = async () => {
+  logout = () => {
     try {
         //await AsyncStorage.removeItem(USER_KEY)
         firebase.auth().signOut()
@@ -25,10 +22,38 @@ class LandingScreen extends Component {
     }
 }
 
+  eliminarCuenta = () => {
+    try {
+      firebase.auth().currentUser.delete();
+      // user.delete()
+      // .then( () => {Alert.alert('Usuario eliminado')})
+      // .catch((error) => {console.log(error)} )
+      goToAuth()
+  } catch (err) {
+      Alert.alert(err)
+  }  
+  }
+
   navigationButtonPressed({ buttonId }) {
     switch (buttonId) {
       case 'nav_logout_btn': {
-        this.logout()
+        //this.logout()
+        Alert.alert(
+          'Eliminar cuenta',
+          'La cuenta se eliminara definitivamente',
+          [
+            {
+            text:'Aceptar',
+            onPress: this.eliminarCuenta
+            },
+            {
+              text: 'Cancelar',
+              onPress: () => {console.log('Cancelado')},
+              style: 'cancel'
+            }
+        ],
+        {cancelable:false},
+        );
         break;
       }
       default:

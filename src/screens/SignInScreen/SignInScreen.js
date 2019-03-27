@@ -41,7 +41,7 @@ export default class SignIn extends React.Component {
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          placeholder='Username'
+          placeholder='Email'
           autoCapitalize="none"
           autoCorrect={false}
           placeholderTextColor='white'
