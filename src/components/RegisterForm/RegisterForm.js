@@ -11,7 +11,9 @@ const registerForm = () => {
             style={styles.textInput} 
             placeholder="Nombre"
             />
-            <TextInput style={styles.textInput} placeholder="Apellido"/>
+            <TextInput 
+            style={styles.textInput} placeholder="Apellido"
+            />
         </View>
     );
 };

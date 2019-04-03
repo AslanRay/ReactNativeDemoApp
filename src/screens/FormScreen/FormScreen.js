@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, TouchableOpacity, Text,Alert,AsyncStorage} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text,Alert,AsyncStorage, TextInput, Modal} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import PantallaForm from '../../components/RegisterForm/RegisterForm';
 import {goToAuth} from '../../navigation';
@@ -13,12 +13,32 @@ class FormScreen extends Component {
     constructor(props){
         super(props);
         this.state = {
-            date_in: '2019-03-15',
+            date_in: '2019-04-3',
             date_out: '2100-12-31',
+            nombre:'',
+            apellido:'',
+            isModalVisible: false
         };
     }
 
-    
+  nombre(value){
+    this.setState({
+      nombre:value
+    })
+  }
+
+  apellido(value){
+    this.setState({
+      apellido:value
+    })
+  }
+
+  setModalVisible(visible){
+    this.setState({
+      isModalVisible:visible
+    })
+  }
+
   componentDidMount() {
     this.navigationEventListener = Navigation.events().bindComponent(this);
   }
@@ -80,13 +100,28 @@ eliminarCuenta = () => {
   }
 
     enviado = () => {
-        alert('Datos enviados ');
+        //alert('Datos enviados: \nNombre: '+this.state.nombre+'\nApellido: '+this.state.apellido+'\nFecha: '+this.state.date_in);
+        this.setModalVisible(true)
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <PantallaForm></PantallaForm>
+            <View style={styles.regForm}>
+            <Text style={styles.header}>Formulario basico</Text>
+            <TextInput 
+            style={styles.textInput} 
+            placeholder="Nombre"
+            value={this.state.nombre}
+            onChangeText={(nombre)=>this.nombre(nombre)}
+            />
+            <TextInput 
+            style={styles.textInput} 
+            placeholder="Apellido"
+            value={this.state.apellido}
+            onChangeText={(apellido)=>this.apellido(apellido)}
+            />
+        </View>
                 <Text style={styles.textInput}>Fecha de nacimiento</Text>
                 <DatePicker
         style ={{padding:10}}
@@ -106,7 +141,24 @@ eliminarCuenta = () => {
                  />
           <TouchableOpacity style={styles.button} onPress={this.enviado}>
                 <Text style={styles.btnText}>Enviar</Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={this.state.isModalVisible} 
+            >
+            <View style={{marginTop:22}}>
+              <Text style={styles.textInput}>Datos enviados</Text>
+              <Text style={styles.textInput}>Nombre: {this.state.nombre}</Text>
+              <Text style={styles.textInput}>Apellido: {this.state.apellido}</Text>
+              <Text style={styles.textInput}>Fecha: {this.state.date_in}</Text>
+              <TouchableOpacity
+              style={styles.button}
+              onPress={()=>{this.setModalVisible(!this.state.isModalVisible);}}>
+                <Text style={styles.btnText}>Cerrar</Text>
+              </TouchableOpacity>
+            </View>
+            </Modal>
             </View>
         );
     }
@@ -140,7 +192,19 @@ const styles = StyleSheet.create({
         marginBottom:30,
         borderBottomColor:'#f8f8f8',
         borderBottomWidth:1       
-    }
+    },
+    regForm: {
+      alignSelf:'stretch'
+  },
+  header: {
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: '#59cbbd',
+      paddingBottom:10,
+      marginBottom:40,
+      borderBottomColor:'#199187',
+      borderBottomWidth:1
+  }
   });
 
 export default FormScreen;
