@@ -30,18 +30,6 @@ export default class Initialising extends React.Component {
 
   componentDidMount() {
 
-    // try {
-    //   const user = await AsyncStorage.getItem(USER_KEY)
-    //   console.log('user: ', user)
-    //   if (user) {
-    //     goHome()
-    //   } else {
-    //     goToAuth()
-    //   }
-    // } catch (err) {
-    //   console.log('error: ', err)
-    //   goToAuth()
-    // }
     firebase.auth().onAuthStateChanged((user) => {
       try {
       if (user) {

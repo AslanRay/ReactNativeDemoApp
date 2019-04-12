@@ -23,23 +23,14 @@ export default class SignIn extends React.Component {
 
   signIn = () => {
     const { username, password } = this.state
-    // try {
-    //    // login with provider
-    //    const user = await AsyncStorage.setItem(USER_KEY, username)
-    //    console.log('usuario correcto', user)
-    //    goHome()
-    // } catch (err) {
-    //   console.log('error:', err)
-    // }
     firebase.auth().signInWithEmailAndPassword(username,password)
     .then( ()=>{ goHome();} )
     .catch( function(error) {
       console.log('error:', error);
-      alert('usuario no existe');
-      
-    });
-   
+      alert('usuario no existe'); 
+    }); 
   }
+  
   render() {
     return (
       <View style={styles.container}>

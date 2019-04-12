@@ -24,10 +24,16 @@ class LandingScreen extends Component {
 
   eliminarCuenta = () => {
     try {
+      // var user = firebase.auth().currentUser;
+      // var credential;
+
+      // user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
+      //   // User re-authenticated.
+
+      // }).catch(function(error) {
+      //   // An error happened.
+      // });
       firebase.auth().currentUser.delete();
-      // user.delete()
-      // .then( () => {Alert.alert('Usuario eliminado')})
-      // .catch((error) => {console.log(error)} )
       goToAuth()
   } catch (err) {
       Alert.alert(err)

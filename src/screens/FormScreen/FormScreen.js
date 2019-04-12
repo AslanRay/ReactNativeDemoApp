@@ -99,6 +99,13 @@ eliminarCuenta = () => {
     }
   }
 
+  limpiarTexto = () => {
+    this.setState({
+      nombre: '',
+      apellido: ''
+    })
+  }
+
     enviado = () => {
         //alert('Datos enviados: \nNombre: '+this.state.nombre+'\nApellido: '+this.state.apellido+'\nFecha: '+this.state.date_in);
         this.setModalVisible(true)
@@ -154,7 +161,7 @@ eliminarCuenta = () => {
               <Text style={styles.textInput}>Fecha: {this.state.date_in}</Text>
               <TouchableOpacity
               style={styles.button}
-              onPress={()=>{this.setModalVisible(!this.state.isModalVisible);}}>
+              onPress={()=>{this.setModalVisible(!this.state.isModalVisible); this.limpiarTexto();}}>
                 <Text style={styles.btnText}>Cerrar</Text>
               </TouchableOpacity>
             </View>
